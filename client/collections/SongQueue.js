@@ -1,6 +1,8 @@
 // SongQueue.js - Defines a backbone model class for the song queue.
 var SongQueue = Songs.extend({
 
+  localStorage: new Backbone.LocalStorage('song-queue'),
+
   initialize: function(){
 
     this.on('add', function(){
