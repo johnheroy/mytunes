@@ -2,15 +2,30 @@
 var SongQueue = Songs.extend({
 
   initialize: function(){
+
     this.on('add', function(){
       if (this.length === 1){
         this.playFirst();
       }
     });
+
+    this.on('remove', function(){
+      if (this.length > 0){
+        this.playFirst();
+      }
+    });
+
+    this.on('ended', function(){
+      this.shift();
+    });
+
+    this.on('dequeue', function(song){
+      this.remove(song);
+    });
+
   },
 
   playFirst: function(){
-    // trigger ¢'currentSong'
     var song = this.at(0);
     song.play();
   }
